@@ -1,0 +1,30 @@
+.error{
+    color: red;
+    font-size: 14px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 50px;
+  }
+  .login-container {
+    max-width: 300px;
+    margin: auto;
+  }
+  .login-container h2 {
+    margin-bottom: 20px;
+  }
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .login-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  .login-form button {
+    padding: 10px 20px;
+  }
