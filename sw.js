@@ -28,9 +28,6 @@ self.addEventListener("install", (e) =>{
     .then(cache =>{
         cache.addAll(APP_SHELL_INMUTABLE)
     });
-    // const pagina =  caches.open('offline-cache').then(function(cache) {
-    //     return cache.add('/pages/offline.html');
-    //   });
     
     e.waitUntil(Promise.all([staticCache, inmutableCache]));
     //e.skipWaiting();
@@ -39,6 +36,8 @@ self.addEventListener("install", (e) =>{
 self.addEventListener("activate", (e) =>{
     console.log("Activado");
 });
+
+/*Por medio de estrategias de cache y fetch, mostrar la página offline cuando no tengamos internet*/ 
 
 self.addEventListener("fetch", (e) =>{
     const source = fetch(e.request).then((res) =>{
@@ -55,37 +54,6 @@ self.addEventListener("fetch", (e) =>{
     });
     e.respondWith(source);
 });
-
-
-/*Por medio de estrategias de cache y fetch, mostrar la página offline cuando no tengamos internet*/ 
-
-/*self.addEventListener("fetch", (e) => {
-  console.log(e.request);
-  
-  if (!navigator.onLine) {
-    e.respondWith(
-      caches.match("/pages/offline.html").then((response) => {
-        if (response) {
-          return response;
-        }
-        
-        return new Response("No internet connection", { headers: { "Content-Type": "text/plain" } });
-      })
-    );
-  }
-});*/
-
-/*
-self.addEventListener("fetch", (e) =>{
-    console.log(e.request);
-    if (!navigator.onLine) {
-        console.log("Hola");
-        e.respondWith(caches.match("/pages/offline.html"))
-    }
-    
-*/ 
-
-
 
     //5. Cache and network race. El recurso que se cargué más rápido en cache o internet se va a devolver primero.
     //5. Cache and network race
